@@ -31,9 +31,9 @@ client.on('guildMemberRemove', async (member) => {
 
   const avatar = await Canvas.loadImage(member.user.displayAvatarURL({ format: 'jpg' }));
   context.drawImage(avatar, 65, canvas.height / 2 - 250, 500, 500);
-  const attachmentleav = new MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
+  const attachmentLeave = new MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
 
-  member.guild.channels.fetch(config.channelMessageleav)
-      .then((channel) => channel.send({ content: `Goodbye ${member.user}!`, files: [attachmentleav] }) )
+  member.guild.channels.fetch(config.channelMessageleave)
+      .then((channel) => channel.send({ content: `Goodbye ${member.user}!`, files: [attachmentLeave] }) )
       .catch(console.error);
 });
