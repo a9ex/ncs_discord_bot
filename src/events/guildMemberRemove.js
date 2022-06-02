@@ -1,6 +1,6 @@
 const { MessageAttachment } = require('discord.js');
-const client = require('..');
-const config = require('../settings/config.json');
+const client = require('../index');
+const config = require('../../config.json');
 const Canvas = require('canvas');
 
 client.on('guildMemberRemove', async (member) => {
@@ -8,7 +8,7 @@ client.on('guildMemberRemove', async (member) => {
 
   const canvas = Canvas.createCanvas(1772, 633);
   const context = canvas.getContext('2d');
-  const background = await Canvas.loadImage(`./img/welcome.png`);
+  const background = await Canvas.loadImage(`../img/welcome.png`);
 
   context.drawImage(background, 0, 0, canvas.width, canvas.height);
   context.strokeStyle = '#f2f2f2';

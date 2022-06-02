@@ -4,9 +4,9 @@ module.exports = (client) => {
   try {
     let command = 0;
     const arrayOfSlashCommands = [];
-    fs.readdirSync('./slscommands').forEach((cmd) => {
+    fs.readdirSync('../slscommands/').forEach((cmd) => {
       const commands = fs
-          .readdirSync(`./slscommands/${cmd}/`)
+          .readdirSync(`../slscommands/${cmd}/`)
           .filter((file) => file.endsWith('.js'));
       for (cmds of commands) {
         const pull = require(`../slscommands/${cmd}/${cmds}`);
