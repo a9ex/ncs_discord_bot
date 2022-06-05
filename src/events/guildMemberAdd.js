@@ -8,7 +8,7 @@ client.on('guildMemberAdd', async (member) => {
 
   const canvas = Canvas.createCanvas(1772, 633);
   const context = canvas.getContext('2d');
-  const background = await Canvas.loadImage(`../img/welcome.png`);
+  const background = await Canvas.loadImage(`src/img/welcome.png`);
 
   context.drawImage(background, 0, 0, canvas.width, canvas.height);
   context.strokeStyle = '#f2f2f2';
@@ -33,7 +33,7 @@ client.on('guildMemberAdd', async (member) => {
   context.drawImage(avatar, 65, canvas.height / 2 - 250, 500, 500);
   const attachmentjoin = new MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
 
-  member.guild.channels.fetch(config.channelMessagejoin)
+  member.guild.channels.fetch(config.channelMessageJoin)
       .then((channel) => channel.send({ content: `Welcome to ${member.guild.name}, ${member.user}!`, files: [attachmentjoin] }) )
       .catch(console.error);
 });

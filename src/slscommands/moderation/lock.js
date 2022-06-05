@@ -2,8 +2,11 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: 'lock',
+  category: 'moderation',
   description: 'Lock a channel for a role!',
   permissions: ['MANAGE_CHANNELS'],
+  usage: '/lock [role]',
+  exemples: ['/lock @role'],
   type: 1,
   options: [
     {
@@ -13,10 +16,11 @@ module.exports = {
       required: true,
     },
   ],
+
   run: async (client, interaction, args) => {
     const role = interaction.options.getRole('role');
 
-    if (role.rawPosition > interaction.guild.me.roles.highest.rawPosition) return interaction.editReply('The bot cannot lock the channel for this role!');
+    if (role.rawPosition > interaction.guild.me.roles.highest.rawPosition) return interaction.reply('The bot cannot lock the channel for this role!');
 
     await interaction.channel.permissionOverwrites.edit(`${role.id}`, { SEND_MESSAGES: false });
 
@@ -24,6 +28,6 @@ module.exports = {
         .setColor('#FF0000')
         .setDescription(`🔒 The channel has been locked for ${role}`);
 
-    await interaction.editReply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed] });
   },
 };

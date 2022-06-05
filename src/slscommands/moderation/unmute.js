@@ -1,7 +1,10 @@
 module.exports = {
   name: 'unmute',
+  category: 'moderation',
   description: 'Unmute a user!',
   permissions: ['MODERATE_MEMBERS'],
+  usage: '/unmute [user]',
+  exemples: ['/unmute @user#1234'],
   type: 1,
   options: [
     {
@@ -16,10 +19,10 @@ module.exports = {
 
     const target = interaction.options.getMember('target');
 
-    if (!target.isCommunicationDisabled()) return interaction.editReply('This user cannot be unmuted!');
+    if (!target.isCommunicationDisabled()) return interaction.reply('This user cannot be unmuted!');
 
     target.timeout(null);
-    await interaction.editReply(`User ${target} was successfully unmuted!`);
+    await interaction.reply(`User ${target} was successfully unmuted!`);
 
   },
 };

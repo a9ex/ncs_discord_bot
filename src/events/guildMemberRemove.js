@@ -8,7 +8,7 @@ client.on('guildMemberRemove', async (member) => {
 
   const canvas = Canvas.createCanvas(1772, 633);
   const context = canvas.getContext('2d');
-  const background = await Canvas.loadImage(`../img/welcome.png`);
+  const background = await Canvas.loadImage(`src/img/welcome.png`);
 
   context.drawImage(background, 0, 0, canvas.width, canvas.height);
   context.strokeStyle = '#f2f2f2';
@@ -33,7 +33,7 @@ client.on('guildMemberRemove', async (member) => {
   context.drawImage(avatar, 65, canvas.height / 2 - 250, 500, 500);
   const attachmentLeave = new MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
 
-  member.guild.channels.fetch(config.channelMessageleave)
+  member.guild.channels.fetch(config.channelMessageLeave)
       .then((channel) => channel.send({ content: `Goodbye ${member.user}!`, files: [attachmentLeave] }) )
       .catch(console.error);
 });

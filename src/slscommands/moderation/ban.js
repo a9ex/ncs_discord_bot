@@ -1,8 +1,11 @@
 
 module.exports = {
   name: 'ban',
+  category: 'moderation',
   description: 'This command is to ban people.',
   permissions: ['BAN_MEMBERS'],
+  usage: '/ban [user] [reason]',
+  exemples: ['/ban @user#1234 spamming'],
   type: 1,
   options: [
     {
@@ -27,8 +30,6 @@ module.exports = {
 
     if (!target.bannable) return interaction.followUp('This user can\'t be ban');
     target.ban({ reason });
-    await interaction.channel.send(
-        `User ${target} successfully banned for: ${reason}`,
-    );
+    await interaction.reply(`User ${target} successfully banned for: ${reason}`);
   },
 };
